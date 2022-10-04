@@ -27,4 +27,13 @@ describe Application do
       expect(response.body).to eq('Alice, Joe, Julia, Kieran, Zoe')
     end
   end
+
+  context 'GET /hello' do
+    it 'returns hello in HTML' do
+      response = get('/hello')
+
+      expect(response.status).to eq(200)
+      expect(response.body).to include('<html>')
+    end
+  end
 end

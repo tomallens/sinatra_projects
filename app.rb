@@ -13,9 +13,7 @@ class Application < Sinatra::Base
   end
 
   get '/hello' do
-    name = params[:name]
-
-    return "Hello #{name}"
+    return erb(:index)
   end
 
   post '/submit' do
@@ -25,9 +23,14 @@ class Application < Sinatra::Base
     return "Thanks #{name}, you sent this message: \"#{message}\""
   end
 
-  post '/sort-names' do
+  get '/names' do
     names = params[:names]
 
     return "#{names.split(',').join(', ')}"
+  end
+  post '/sort-names' do
+    names = params[:names]
+
+    return "#{names.split(',').sort.join(', ')}"
   end
 end
